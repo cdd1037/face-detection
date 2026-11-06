@@ -1,0 +1,91 @@
+name: Build and verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  managed:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build, regression tests and package
+        shell: pwsh
+        run: ./scripts/verify.ps1
+      - name: Run raw-pixel sample
+        run: dotnet run --project samples/DetectFaces -c Release --no-build -- tests/fixtures/astronaut.rgb 256 256 rgb24
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ matrix.os }}
+          path: artifacts/packages/*.nupkg
+
+  native-aot:
+    strategy:
+      matrix:
+        scalar: [false, true]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install official Native AOT build prerequisites
+        run: sudo apt-get update && sudo apt-get install -y clang zlib1g-dev
+      - name: Publish and run regression tests
+        run: |
+          dotnet publish tests/FaceDetection.Tests -c Release -r linux-x64 -p:PublishAot=true -p:FaceDetectionScalar=${{ matrix.scalar }} -o artifacts/aot
+          artifacts/aot/FaceDetection.Tests
+      - name: Publish and run the sample
+        run: |
+          dotnet publish samples/DetectFaces -c Release -r linux-x64 -p:PublishAot=true -p:FaceDetectionScalar=${{ matrix.scalar }} -o artifacts/sample-aot
+          artifacts/sample-aot/DetectFaces tests/fixtures/astronaut.rgb 256 256 rgb24
+
+  publish:
+    name: Publish NuGet package
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [managed, native-aot]
+    runs-on: ubuntu-latest
+    environment: nuget
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: nuget-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Check release tag matches package version
+        shell: pwsh
+        run: |
+          [xml]$project = Get-Content src/FaceDetection/FaceDetection.csproj
+          $version = [string]$project.Project.PropertyGroup[0].Version
+          if ($env:GITHUB_REF_NAME -cne "v$version") {
+            throw "Release tag must be v$version."
+          }
+      - uses: actions/download-artifact@v4
+        with:
+          name: package-ubuntu-latest
+          path: artifacts/packages
+      - name: Authenticate to NuGet with trusted publishing
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: cdd
+      - name: Publish package
+        env:
+          NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+        run: dotnet nuget push "artifacts/packages/*.nupkg" --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json

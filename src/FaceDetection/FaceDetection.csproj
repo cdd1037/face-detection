@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <AssemblyName>FaceDetection</AssemblyName>
+    <RootNamespace>FaceDetection</RootNamespace>
+    <Version>0.1.0-preview.4</Version>
+    <Description>Pure C# face detection with an embedded YuNet model, reusable workspaces and scalar/SIMD kernels.</Description>
+    <PackageId>Cdd.FaceDetection</PackageId>
+    <Authors>cdd1037</Authors>
+    <PackageProjectUrl>https://github.com/cdd1037/face-detection</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cdd1037/face-detection</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Standalone managed YuNet inference with embedded weights, reusable workspaces, RGB24/RGBA32/BGR24 inputs, SIMD kernels and scalar fallback.</PackageReleaseNotes>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>face-detection;yunet;managed;csharp</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(FaceDetectionScalar)' == 'true'">
+    <DefineConstants>$(DefineConstants);FD_SCALAR</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="FaceDetection.Tests" />
+    <EmbeddedResource Include="Model/yunet.bin" LogicalName="FaceDetection.Model.yunet.bin" />
+    <None Include="../../LICENSE" Pack="true" PackagePath="/" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../THIRD-PARTY-NOTICES.txt" Pack="true" PackagePath="/" />
+    <None Include="../../licenses/libfacedetection/*" Pack="true" PackagePath="licenses/libfacedetection/" />
+  </ItemGroup>
+</Project>

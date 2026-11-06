@@ -1,0 +1,3 @@
+acf7b254121927e7dced30e233a2e03119f28ea2
+2026-06-28
+Merge pull request #383 from pszemus/fix-sigsegv-in-highway-kernels

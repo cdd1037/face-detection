@@ -1,0 +1,54 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{059ABF91-084F-48D0-B4E4-635C0518850A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceDetection", "src\FaceDetection\FaceDetection.csproj", "{C6EE4BC5-5476-4633-BB64-CFA3D9B41AAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ABEBE0C0-4BB0-4EC1-BEB8-EFB8E47046D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceDetection.Tests", "tests\FaceDetection.Tests\FaceDetection.Tests.csproj", "{6A5CE39B-7D0D-4847-ADB3-C77F00A18C59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{445F6C34-18E7-4317-9790-ECFE9FD45977}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DetectFaces", "samples\DetectFaces\DetectFaces.csproj", "{093FA061-1923-4FF9-853B-FEB88272BC77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{B1ED6F43-C620-4F8F-837C-C074DE229248}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceDetection.Benchmarks", "benchmarks\FaceDetection.Benchmarks\FaceDetection.Benchmarks.csproj", "{6566CAD8-2084-47CA-B6DA-34E35DB080B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6EE4BC5-5476-4633-BB64-CFA3D9B41AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EE4BC5-5476-4633-BB64-CFA3D9B41AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EE4BC5-5476-4633-BB64-CFA3D9B41AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EE4BC5-5476-4633-BB64-CFA3D9B41AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A5CE39B-7D0D-4847-ADB3-C77F00A18C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A5CE39B-7D0D-4847-ADB3-C77F00A18C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A5CE39B-7D0D-4847-ADB3-C77F00A18C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A5CE39B-7D0D-4847-ADB3-C77F00A18C59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093FA061-1923-4FF9-853B-FEB88272BC77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093FA061-1923-4FF9-853B-FEB88272BC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093FA061-1923-4FF9-853B-FEB88272BC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093FA061-1923-4FF9-853B-FEB88272BC77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6566CAD8-2084-47CA-B6DA-34E35DB080B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6566CAD8-2084-47CA-B6DA-34E35DB080B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6566CAD8-2084-47CA-B6DA-34E35DB080B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6566CAD8-2084-47CA-B6DA-34E35DB080B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C6EE4BC5-5476-4633-BB64-CFA3D9B41AAD} = {059ABF91-084F-48D0-B4E4-635C0518850A}
+		{6A5CE39B-7D0D-4847-ADB3-C77F00A18C59} = {ABEBE0C0-4BB0-4EC1-BEB8-EFB8E47046D4}
+		{093FA061-1923-4FF9-853B-FEB88272BC77} = {445F6C34-18E7-4317-9790-ECFE9FD45977}
+		{6566CAD8-2084-47CA-B6DA-34E35DB080B8} = {B1ED6F43-C620-4F8F-837C-C074DE229248}
+	EndGlobalSection
+EndGlobal

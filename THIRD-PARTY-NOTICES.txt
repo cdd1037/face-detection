@@ -1,0 +1,23 @@
+FaceDetection is a standalone C# implementation derived from
+cdd1037/face-detection and libfacedetection's 53-layer CNN inference algorithm.
+Standalone build/runtime ownership does not imply new authorship of that model.
+
+Original wrapper and source project:
+https://github.com/cdd1037/face-detection
+Copyright (c) 2026, cdd1037. BSD-3-Clause. See LICENSE.
+
+Embedded model weights and inference algorithm:
+https://github.com/ShiqiYu/libfacedetection
+BSD-3-Clause. Original notices are retained under licenses/libfacedetection:
+- LICENSE: Copyright (c) 2015-2019, Shiqi Yu, all rights reserved.
+- SOURCE-NOTICE.txt: Copyright (c) 2018-2021, Shiqi Yu, all rights reserved.
+- MODEL-NOTICE.txt: Copyright (c) 2018-2023, Shiqi Yu, all rights reserved.
+UPSTREAM.txt records the original vendored revision metadata.
+The model was exported from facedetectcnn-data.cpp without retraining or
+quantization. See docs/provenance.md for the source and conversion process.
+
+No Google Highway source or binary is included in this library or package.
+The external native project retains its own dependency notices.
+
+The public-domain NASA astronaut portrait is test-only and not packaged.
+See tests/fixtures/README.md for its source and transformation.

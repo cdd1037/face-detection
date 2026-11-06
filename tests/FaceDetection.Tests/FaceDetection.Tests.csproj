@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(FaceDetectionScalar)' == 'true'">
+    <DefineConstants>$(DefineConstants);FD_SCALAR</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/FaceDetection/FaceDetection.csproj" />
+    <None Include="../fixtures/astronaut.rgb" Link="astronaut.rgb" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

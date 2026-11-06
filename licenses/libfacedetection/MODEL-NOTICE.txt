@@ -1,0 +1,6 @@
+From third_party/libfacedetection/src/facedetectcnn-data.cpp:
+
+// Auto generated data file
+// Copyright (c) 2018-2023, Shiqi Yu, all rights reserved.
+
+The full libfacedetection license is retained in LICENSE in this directory.
